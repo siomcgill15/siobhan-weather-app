@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <title>My Weather App</title>
+  </head>
+
+  <body>
+    <div class="weather-app">
+      <header>
+        <form class="search-form">
+          <input
+            type="search"
+            placeholder="Enter a city.."
+            required
+            class="search-form-input"
+          />
+          <input type="submit" value="Search" class="search-form-button" />
+        </form>
+      </header>
+
+      <main>
+        <div class="weather-app-data">
+          <div>
+            <h1 id="city">Paris</h1>
+            <p>
+              <span id="time"></span>Tuesday 14:49,
+              <span id="description">scattered clouds</span>
+              <br />
+              Humiidty:<strong id="humidity"></strong> Wind:
+              <strong id="wind-speed">3.13km/h</strong>
+            </p>
+          </div>
+          <div>🌦 <span id="temperature">12</span>℃</div>
+        </div>
+      </main>
+      <footer>
+        Coded by
+        <a href="https://github.com/siomcgill15" target="blank"
+          >Siobhan McGill</a
+        >
+        , is opensourced
+        <a
+          href="https://github.com/siomcgill15/siobhan-weather-app"
+          target="blank"
+        >
+          on Github</a
+        >
+        and website
+        <a href="https://siobhan-weather-app.netlify.app/" target="blank"
+          >hosted on Netlify</a
+        >
+      </footer>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
