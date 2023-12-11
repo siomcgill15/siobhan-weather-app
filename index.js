@@ -7,14 +7,17 @@ function refreshWeather(response) {
   let windSpeedElement = document.querySelector("#wind-speed");
   let timeElement = document.querySelector("#time");
   let date = new Date(response.data.time * 1000);
+  let iconElement = document.querySelector("#icon");
 
   cityElement.innerHTML = response.data.city;
-  timeElement.innerHTML = `${date.getDay()} ${date.getHours()}:${date.getMinutes()}`;
+  timeElement.innerHTML = formatDate(date);
   descriptionElement.innerHTML = response.data.condition.description;
-  humidityElement.innterHTML = `${response.data.temperature.humidity}%`;
+  humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
   windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
   temperatureElement.innerHTML = Math.round(temperature);
+  iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
 }
+
 function formatDate(date) {
   let minutes = date.getMinutes();
   let hours = date.getHours();
@@ -27,7 +30,6 @@ function formatDate(date) {
     "Friday",
     "Saturday",
   ];
-
   let day = days[date.getDay()];
 
   if (minutes < 10) {
@@ -36,17 +38,21 @@ function formatDate(date) {
 
   return `${day} ${hours}:${minutes}`;
 }
+
 function searchCity(city) {
-  let apiKey = "fbef01f4et1b02o0d25c27210a43ef3f";
+  let apiKey = "b2a5adcct04b33178913oc335f405433";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
   axios.get(apiUrl).then(refreshWeather);
 }
-function handSearchSubmit(event) {
+
+function handleSearchSubmit(event) {
   event.preventDefault();
-  let searchInput = document.querySelector(".search-form-input");
+  let searchInput = document.querySelector("#search-form-input");
+
   searchCity(searchInput.value);
 }
-let searchFormElement = document.querySelector(".search-form");
-searchFormElement.addEventListener("submit", handSearchSubmit);
+
+let searchFormElement = document.querySelector("#search-form");
+searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 searchCity("Paris");
